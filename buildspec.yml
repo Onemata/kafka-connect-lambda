@@ -8,6 +8,8 @@ phases:
   build:
     commands:
       - mvn clean package
+      - ls -al
+      - ls -al target
       - docker build -t kafka-connect-lambda:latest .
       - docker tag kafka-connect-lambda:latest 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda:latest
   post_build:
