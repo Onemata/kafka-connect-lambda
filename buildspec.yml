@@ -11,7 +11,7 @@ phases:
       - ls -al
       - ls -al target
       - docker build -t kafka-connect-lambda .
-      - docker tag kafka-connect-lambda:latest 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda
+      - docker tag kafka-connect-lambda 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda
   post_build:
     commands:
       - docker push 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda
