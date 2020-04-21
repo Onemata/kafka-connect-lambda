@@ -1,4 +1,4 @@
-FROM debian:10-slim
+FROM debian:bullseye-slim
 
 #EXPOSE 8083
 
