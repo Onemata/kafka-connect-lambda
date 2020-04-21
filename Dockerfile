@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:sid-slim
 
 RUN apt-get update -y
 RUN apt-get install wget -y
@@ -7,7 +7,7 @@ RUN wget -qO - https://packages.confluent.io/deb/3.3/archive.key | apt-key add -
 RUN echo 'deb [arch=amd64] https://packages.confluent.io/deb/3.3 stable main' >> /etc/apt/sources.list
 #RUN add-apt-repository "deb [arch=amd64] https://packages.confluent.io/deb/3.3 stable main"
 RUN apt-get update -y && apt-get install confluent-platform-oss-2.11 -y
-
+RUN apt-get clean
 
 #EXPOSE 8083
 
