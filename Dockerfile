@@ -9,8 +9,9 @@ RUN echo 'deb [arch=amd64] https://packages.confluent.io/deb/3.3 stable main' >>
 RUN apt-get update -y && apt-get install confluent-platform-oss-2.11 -y
 RUN apt-get clean
 
-#EXPOSE 8083
+EXPOSE 8083
 
+CMD confluent start
 
 
 #FROM confluentinc/cp-kafka-connect:latest
