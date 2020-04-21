@@ -1,5 +1,8 @@
 version: 0.2
 
+env:
+  variables:
+    BUILD_NUM: build-$(Get-Date -UFormat "%Y%m%d-%H%M%S")
 phases:
   pre_build:
     commands:
@@ -10,12 +13,13 @@ phases:
       - mvn clean package
       - ls -al
       - ls -al target
-      - docker build -t kafka-connect-lambda .
-      - docker tag kafka-connect-lambda 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda
+      - docker build -t kafka-connect-lambda:$Env:BUILD_NUM .
+      - docker tag kafka-connect-lambda:$Env:BUILD_NUM 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda:$Env:BUILD_NUM
   post_build:
     commands:
-      - docker push 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda
+      - docker push 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda:$Env:BUILD_NUM
 artifacts:
   files:
     - 'target/plugin*/**'
+  name: $Env:BUILD_NUM
   discard-paths: yes
