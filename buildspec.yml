@@ -1,7 +1,7 @@
 version: 0.2
 
 phases:
-  pre-build:
+  pre_build:
     commands:
       - echo logging in to AWS ECR...
       - $(aws ecr get-login --no-include-email --region us-west-2)
@@ -10,7 +10,7 @@ phases:
       - mvn clean package
       - docker build -t kafka-connect-lambda:latest .
       - docker tag kafka-connect-lambda:latest 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda:latest
-  post-build:
+  post_build:
     commands:
       - docker push 649894021925.dkr.ecr.us-east-1.amazonaws.com/onemata/kafka-connect-lambda:latest  
 artifacts:
